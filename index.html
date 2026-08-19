@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAGAS - Penyewaan Gedung & Venue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: 0 auto;
+        }
+
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.7rem;
+            color: #7b2cbf;
+            margin-bottom: -4px;
+        }
+
+        .logo .tagline {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.3rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #7b2cbf;
+        }
+
+        .hero {
+            padding: 4rem 0 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f3ebff 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+            color: #222;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            margin-bottom: 1.4rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .cta-button,
+        .property-btn,
+        .submit-btn {
+            background: #7b2cbf;
+            color: #fff;
+            border: none;
+            padding: 0.9rem 1.3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-weight: 600;
+        }
+
+        .cta-button:hover,
+        .property-btn:hover,
+        .submit-btn:hover {
+            background: #5e60ce;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .promo-bar {
+            overflow: hidden;
+            background: linear-gradient(90deg, #7b2cbf, #5e60ce);
+            color: #fff;
+            padding: 0.8rem 0;
+            border-radius: 16px;
+            margin-top: 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+
+        .promo-track {
+            display: flex;
+            width: max-content;
+            animation: slideFade 20s linear infinite;
+            white-space: nowrap;
+            will-change: transform, opacity;
+        }
+
+        .promo-track span {
+            padding: 0 2.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideFade {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            8% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-60%);
+                opacity: 1;
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #222;
+        }
+
+        .properties {
+            padding: 4rem 0;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .property-card {
+            background: #fff;
+            padding: 1.3rem;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 220px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #cdb4db, #a2d2ff);
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .property-price {
+            color: #7b2cbf;
+            font-weight: 700;
+            margin: 0.7rem 0;
+        }
+
+        .about {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .features-list li {
+            margin-bottom: 0.7rem;
+            color: #444;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .stat {
+            background: #f4efff;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact {
+            padding: 4rem 0;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background: #fff;
+            padding: 1.4rem;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+
+        .info-item {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            background: #fff;
+            padding: 1.4rem;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background: #222;
+            color: #fff;
+            padding: 1.4rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            z-index: 1200;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .about-content,
+            .contact-content,
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .navbar .container {
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 2.5rem 0;
+            }
+
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>BAGAS</h1>
+                <p class="tagline">PENYEWAAN GEDUNG</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#properties" class="nav-link">Gedung</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#contact" class="nav-link">Hubungi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h2>Tempat Acara yang Elegan & Premium</h2>
+                <p>Kami menyediakan gedung serbaguna untuk pernikahan, seminar, konferensi, dan acara corporate dengan fasilitas lengkap dan suasana yang nyaman.</p>
+                <button class="cta-button" type="button">Jelajahi Gedung</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://lpaud-unpam.my.id/uploads/1783749265_6a51da914f700.jpeg" alt="Gedung Wedding">
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="promo-bar" aria-label="Promo bergerak">
+                <div class="promo-track">
+                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
+                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
+                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
+                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="properties">
+        <div class="container">
+            <h2 class="section-title">Fasilitas Gedung Kami</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://lpaud-unpam.my.id/uploads/1783750425_6a51df19eacb4.jpeg" alt="Aula Rektorat">
+                    </div>
+                    <h3>Aula Rektorat</h3>
+                    <p class="property-price">Mulai Rp 5,2 Juta</p>
+                    <p class="property-desc">Kapasitas 350 tamu, gedung nyaman, dan area parkir luas.</p>
+                    <button class="property-btn">Lihat Detail</button>
+                </div>
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://lpaud-unpam.my.id/uploads/1783750413_6a51df0d3346a.jpeg" alt="Gedung Serbaguna Pusat Kota">
+                    </div>
+                    <h3>Aula Rektorat</h3>
+                    <p class="property-price">Mulai Rp 5,2 Juta</p>
+                    <p class="property-desc">Cocok untuk seminar, pelatihan, dan acara keluarga dengan fasilitas modern.</p>
+                    <button class="property-btn">Lihat Detail</button>
+                </div>
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="https://lpaud-unpam.my.id/uploads/1783750440_6a51df28068a8.jpeg" alt="Ruang Meeting Premium">
+                    </div>
+                    <h3>Aula Rektorat</h3>
+                    <p class="property-price">Mulai Rp 5,2 Juta</p>
+                    <p class="property-desc">Ruang rapat nyaman, layar proyektor, dan sistem suara lengkap.</p>
+                    <button class="property-btn">Lihat Detail</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Aula Rektorat</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Mengapa Memilih Aula Rektorat?</h3>
+                    <ul class="features-list">
+                        <li>✓ Pengalaman lebih dari 10 tahun di bidang penyewaan gedung</li>
+                        <li>✓ Banyak pilihan venue untuk berbagai acara</li>
+                        <li>✓ Tim profesional dan responsif</li>
+                        <li>✓ Harga transparan dan fleksibel</li>
+                        <li>✓ Dukungan penuh sebelum dan selama acara</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+            
+            
+            
+                        <h4>1000+</h4>
+                        <p>Acara Sukses</p>
+                    </div>
+                    <div class="stat">
+                        <h4>10+</h4>
+                        <p>Gedung Tersedia</p>
+                    </div>
+                    <div class="stat">
+                        <h4>20+</h4>
+                        <p>Tahun Pengalaman</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h4>📞 Telepon</h4>
+                        <p>+62 881-855-3622</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>✉️ Email</h4>
+                        <p>BagasVenue@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>📍 Gedung Aula Rektorat</h4>
+                        <p>Jl. Suryakencana No.1, Pamulang Bar., Kec. Pamulang, Kota Tangerang Selatan, Banten 15417</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>🕐 Jam Kerja</h4>
+                        <p>Senin - Jumat: 09:00 - 17:00<br>Sabtu: 10:00 - 14:00</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Nama Anda" required>
+                    <input type="email" placeholder="Email Anda" required>
+                    <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 BAGAS Penyewaan Gedung. Semua hak dilindungi.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/628818553622?text=Halo%20Pak%Bagas%2C%20saya%20ingin%20menanyakan%20penyewaan%20gedung." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Hubungi WhatsApp BAGAS">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.4.1-.1.2-.5.7-.6.8-.1.1-.2.1-.4 0-.2-.1-.8-.3-1.5-.9-.5-.5-.9-1.1-.9-1.3 0-.1 0-.2.1-.3.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1-.1-.3-.2-.4-.1-.1-.4-.9-.6-1.2-.2-.3-.3-.3-.4-.3h-.3c-.1 0-.2 0-.3.1-.1.1-.4.4-.4.9s.4 1.1.5 1.2c.1.1 1.2 1.9 2.9 2.7.4.2.7.3 1 .4.4.1.8.1 1.1.1.3 0 .7-.1.9-.2.2-.1.5-.4.6-.8.1-.3.1-.6 0-.7-.1-.1-.3-.2-.4-.3zM12 2C6.5 2 2 6.5 2 12c0 2.2.6 4.3 1.7 6.1L2 22l3.9-1.1c1.7.9 3.6 1.4 5.6 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.8 0-3.5-.5-5-.1l-.4-.2-2.3.6.6-2.3-.2-.4A8 8 0 1 1 20 12c0 4.4-3.6 8-8 8z"/>
+        </svg>
+    </a>
+</body>
+</html>>
