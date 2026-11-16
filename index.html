@@ -1,523 +1,349 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAGAS - Penyewaan Gedung & Venue</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAGAS – Gedung Pernikahan Aula Rektorat, Pamulang</title>
+<meta name="description" content="Sewa Aula Rektorat untuk pernikahan: kapasitas 400 undangan, parkir luas, mulai Rp 5,2 juta. Cek tanggal langsung lewat WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#2e1740; --plum-2:#4a2766; --gold:#b98b4a; --gold-soft:#e8d3ae;
+  --blush:#fbf1ee; --paper:#fffdfb; --ink:#2a2230; --muted:#6d6375;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden;font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.container{width:min(1120px,90%);margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1}
 
-        html {
-            scroll-behavior: smooth;
-        }
+/* NAV */
+.navbar{position:absolute;inset:0 0 auto 0;z-index:20}
+.navbar .container{position:relative;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 0}
+.logo{font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:.14em;color:#fff;text-decoration:none}
+.nav-menu{display:flex;list-style:none;gap:2rem}
+.nav-link{color:#fff;text-decoration:none;font-weight:500;opacity:.9}
+.nav-link:hover{opacity:1;color:var(--gold-soft)}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            color: #222;
-            line-height: 1.6;
-        }
+.nav-toggle{display:none;width:44px;height:44px;background:rgba(46,23,64,.55);border:1px solid rgba(255,255,255,.35);border-radius:10px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .25s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-        .container {
-            width: min(1120px, 90%);
-            margin: 0 auto;
-        }
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--plum)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:settle 2.4s ease-out both}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,12,44,.55) 0%,rgba(30,12,44,.25) 35%,rgba(30,12,44,.88) 100%)}
+.hero-inner{position:relative;z-index:2;padding:9rem 0 3.5rem;width:100%}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5.8rem);max-width:12ch;margin-bottom:1.1rem;animation:rise 1.2s .3s ease-out both}
+.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero p.lead{font-size:1.15rem;max-width:46ch;color:#f1e8f5;margin-bottom:2rem;animation:rise 1.2s .5s ease-out both}
+@keyframes settle{from{transform:scale(1.12)}to{transform:scale(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
-        .navbar {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+/* DATE CHECKER */
+.checker{display:grid;grid-template-columns:1.2fr 1fr auto;gap:.8rem;background:rgba(255,253,251,.97);padding:1rem;border-radius:14px;color:var(--ink);max-width:760px;animation:rise 1.2s .7s ease-out both;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.checker label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:.15rem}
+.checker input,.checker select{width:100%;padding:.7rem .8rem;border:1px solid #ddd2e2;border-radius:8px;font:inherit;background:#fff}
+.btn{display:inline-block;background:var(--gold);color:#fff;border:0;padding:.85rem 1.5rem;border-radius:999px;font:600 1rem var(--sans);cursor:pointer;text-decoration:none;transition:background .25s}
+.btn:hover{background:#9c7236}
+.checker .btn{align-self:end;border-radius:8px;padding:.78rem 1.4rem}
 
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+/* PROMO */
+.promo{background:var(--plum);color:var(--gold-soft);overflow:hidden;padding:.8rem 0}
+.promo-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.promo-track span{padding:0 2.2rem;font-weight:500;white-space:nowrap}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-        .logo h1 {
-            font-size: 1.7rem;
-            color: #7b2cbf;
-            margin-bottom: -4px;
-        }
+/* SECTIONS */
+section{padding:5.5rem 0}
+.section-head{max-width:620px;margin:0 auto 3rem;text-align:center}
+.section-head h2{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:.8rem}
+.section-head p{color:var(--muted)}
 
-        .logo .tagline {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #666;
-            letter-spacing: 1px;
-        }
+/* STORY */
+.story{background:var(--blush)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.story-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:200px 200px 16px 16px}
+.story h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.story p{color:var(--muted);margin-bottom:1.4rem;max-width:52ch}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--gold-soft)}
+.facts b{display:block;font:600 2.2rem var(--serif);color:var(--plum-2)}
+.facts span{font-size:.9rem;color:var(--muted)}
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.3rem;
-        }
+/* FASILITAS */
+.fasilitas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.fas{background:#fff;border:1px solid #eadfe9;border-radius:14px;padding:1.4rem 1.3rem;border-top:3px solid var(--gold)}
+.fas h3{font-size:1.45rem;color:var(--plum-2);margin-bottom:.3rem}
+.fas p{font-size:.93rem;color:var(--muted)}
+.fas.utama{background:var(--plum);border-color:var(--plum)}
+.fas.utama h3{color:var(--gold-soft)}
+.fas.utama p{color:#cdbbd8}
 
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+/* PAKET */
+.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.pkg{background:#fff;border:1px solid #eadfe9;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pkg img{width:100%;height:230px;object-fit:cover}
+.pkg-body{padding:1.5rem;display:flex;flex-direction:column;gap:.6rem;flex:1}
+.pkg h3{font-size:1.7rem}
+.price{color:var(--gold);font-weight:600;font-size:1.1rem}
+.pkg ul{list-style:none;color:var(--muted);font-size:.95rem;flex:1}
+.pkg li{padding:.2rem 0 .2rem 1.4rem;position:relative}
+.pkg li::before{content:"✓";position:absolute;left:0;color:var(--gold)}
+.pkg.featured{border:2px solid var(--gold);transform:translateY(-10px)}
+.pkg .btn{text-align:center;margin-top:.6rem}
+.note{text-align:center;color:var(--muted);font-size:.9rem;margin-top:1.8rem}
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: #7b2cbf;
-        }
+/* KENAPA */
+.why{background:var(--plum);color:#f1e8f5}
+.why .section-head p{color:#cdbbd8}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.why-grid h3{font-size:1.5rem;color:var(--gold-soft);margin-bottom:.4rem}
+.why-grid p{font-size:.95rem;color:#cdbbd8}
 
-        .hero {
-            padding: 4rem 0 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, #f3ebff 100%);
-        }
+/* KONTAK */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.info-item{margin-bottom:1.3rem}
+.info-item h3{font-size:1.35rem;color:var(--plum-2)}
+.info-item p{color:var(--muted)}
+.contact-form{display:flex;flex-direction:column;gap:.9rem;background:var(--blush);padding:1.8rem;border-radius:16px}
+.contact-form input,.contact-form textarea{padding:.85rem;border:1px solid #e2d4de;border-radius:8px;font:inherit;background:#fff}
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 2rem;
-            align-items: center;
-        }
+/* FOOTER */
+.footer{background:#1a0e25;color:#cdbbd8;padding:2rem 0;text-align:center}
+.social-links{margin-top:.7rem;display:flex;justify-content:center;gap:1.4rem}
+.social-link{text-decoration:none}
+.social-link:hover{color:var(--gold-soft)}
 
-        .hero-content h2 {
-            font-size: 2.3rem;
-            margin-bottom: 1rem;
-            color: #222;
-        }
+.whatsapp-float{position:fixed;right:20px;bottom:20px;width:62px;height:62px;background:#fff;color:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.28);z-index:30;transition:transform .25s}
+.whatsapp-float:hover{transform:scale(1.07)}
+.whatsapp-float svg{width:40px;height:40px}
 
-        .hero-content p {
-            font-size: 1.05rem;
-            margin-bottom: 1.4rem;
-            color: #555;
-            max-width: 600px;
-        }
-
-        .cta-button,
-        .property-btn,
-        .submit-btn {
-            background: #7b2cbf;
-            color: #fff;
-            border: none;
-            padding: 0.9rem 1.3rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            font-weight: 600;
-        }
-
-        .cta-button:hover,
-        .property-btn:hover,
-        .submit-btn:hover {
-            background: #5e60ce;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .promo-bar {
-            overflow: hidden;
-            background: linear-gradient(90deg, #7b2cbf, #5e60ce);
-            color: #fff;
-            padding: 0.8rem 0;
-            border-radius: 16px;
-            margin-top: 2rem;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-        }
-
-        .promo-track {
-            display: flex;
-            width: max-content;
-            animation: slideFade 20s linear infinite;
-            white-space: nowrap;
-            will-change: transform, opacity;
-        }
-
-        .promo-track span {
-            padding: 0 2.5rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes slideFade {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            8% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-60%);
-                opacity: 1;
-            }
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #222;
-        }
-
-        .properties {
-            padding: 4rem 0;
-        }
-
-        .properties-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .property-card {
-            background: #fff;
-            padding: 1.3rem;
-            border-radius: 14px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-        }
-
-        .property-image {
-            width: 100%;
-            height: 220px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #cdb4db, #a2d2ff);
-        }
-
-        .property-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-        .property-price {
-            color: #7b2cbf;
-            font-weight: 700;
-            margin: 0.7rem 0;
-        }
-
-        .about {
-            padding: 4rem 0;
-            background: #fff;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .features-list li {
-            margin-bottom: 0.7rem;
-            color: #444;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .stat {
-            background: #f4efff;
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .contact {
-            padding: 4rem 0;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .contact-info {
-            background: #fff;
-            padding: 1.4rem;
-            border-radius: 14px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-        }
-
-        .info-item {
-            margin-bottom: 1rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            background: #fff;
-            padding: 1.4rem;
-            border-radius: 14px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.07);
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 0.9rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .footer {
-            background: #222;
-            color: #fff;
-            padding: 1.4rem 0;
-            text-align: center;
-        }
-
-        .social-links {
-            margin-top: 0.8rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-link {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 58px;
-            height: 58px;
-            background: #25D366;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
-            z-index: 1200;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
-        }
-
-        .whatsapp-float svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid,
-            .about-content,
-            .contact-content,
-            .properties-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .navbar .container {
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 2.5rem 0;
-            }
-
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+@media (max-width:900px){
+  .checker{grid-template-columns:1fr}
+  .story-grid,.contact-grid,.packages-grid{grid-template-columns:1fr}
+  .why-grid,.fasilitas-grid{grid-template-columns:1fr 1fr}
+  .pkg.featured{transform:none}
+  .story-grid img{aspect-ratio:4/3;border-radius:16px}
+}
+@media (max-width:700px){
+  .why-grid,.fasilitas-grid{grid-template-columns:1fr}
+  section{padding:4rem 0}
+}
+@media (max-width:700px){
+  .nav-toggle{display:flex}
+  .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(46,23,64,.97);border-radius:14px;padding:.5rem;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .nav-menu.open{display:flex}
+  .nav-link{display:block;padding:.9rem 1rem;font-size:1.05rem}
+  .hero-inner{padding:6.5rem 0 2rem}
+  .hero h1{max-width:none}
+  .hero p.lead{font-size:1.02rem;margin-bottom:1.4rem}
+  .checker{padding:.9rem}
+  .checker input,.checker select,.contact-form input,.contact-form textarea{font-size:16px}
+  .checker .btn,.story .btn{width:100%;text-align:center}
+  .section-head{margin-bottom:2rem}
+  .facts{gap:.5rem}
+  .facts b{font-size:1.7rem}
+  .facts span{font-size:.8rem}
+  .pkg img{height:200px}
+  .pkg-body{padding:1.2rem}
+  .contact-form{padding:1.3rem}
+  .footer{padding-bottom:5rem}
+  .whatsapp-float{width:56px;height:56px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .whatsapp-float svg{width:36px;height:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>BAGAS</h1>
-                <p class="tagline">PENYEWAAN GEDUNG</p>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link active">Beranda</a></li>
-                <li><a href="#properties" class="nav-link">Gedung</a></li>
-                <li><a href="#about" class="nav-link">Tentang</a></li>
-                <li><a href="#contact" class="nav-link">Hubungi</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar">
+  <div class="container">
+    <a href="#home" class="logo">BAGAS</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home" class="nav-link">Beranda</a></li>
+      <li><a href="#about" class="nav-link">Tentang</a></li>
+      <li><a href="#fasilitas" class="nav-link">Fasilitas</a></li>
+      <li><a href="#paket" class="nav-link">Paket</a></li>
+      <li><a href="#contact" class="nav-link">Hubungi</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-    <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h2>Tempat Acara yang Elegan & Premium</h2>
-                <p>Kami menyediakan gedung serbaguna untuk pernikahan, seminar, konferensi, dan acara corporate dengan fasilitas lengkap dan suasana yang nyaman.</p>
-                <button class="cta-button" type="button">Jelajahi Gedung</button>
-            </div>
-            <div class="hero-image">
-                <img src="https://lpaud-unpam.my.id/uploads/1783749265_6a51da914f700.jpeg" alt="Gedung Wedding">
-            </div>
-        </div>
+<header id="home" class="hero">
+  <img class="hero-bg" src="https://manpro.lpaud-unpam.my.id/uploads/1783749265_6a51da914f700.jpeg" alt="Dekorasi pernikahan di Aula Rektorat" referrerpolicy="no-referrer" loading="eager" decoding="async">
+  <div class="hero-inner container">
+    <h1>Hari bahagia, <em>tempat yang layak</em></h1>
+    <p class="lead">Aula Rektorat menampung hingga 400 undangan, dengan area parkir luas di Pamulang. Cek apakah tanggal pernikahan Anda masih kosong.</p>
+    <form class="checker" id="checker">
+      <div><label for="tgl">Tanggal acara</label><input type="date" id="tgl" required></div>
+      <div><label for="tamu">Jumlah tamu</label>
+        <select id="tamu"><option>Sampai 150 tamu</option><option>150–300 tamu</option><option selected>300–800 tamu</option></select>
+      </div>
+      <button type="submit" class="btn">Cek tanggal</button>
+    </form>
+  </div>
+</header>
 
-        <div class="container">
-            <div class="promo-bar" aria-label="Promo bergerak">
-                <div class="promo-track">
-                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
-                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
-                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
-                    <span>Gedung mewah biaya murah — Sewa gedung premium dengan fasilitas lengkap — Booking sekarang sebelum penuh</span>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="promo" aria-label="Promo">
+  <div class="promo-track">
+    <span>Mulai Rp 5 jutaan</span><span>Kapasitas 400 undangan</span><span>Parkir luas</span><span>Konsultasi gratis lewat WhatsApp</span>
+    <span>Mulai Rp 5 jutaan</span><span>Kapasitas 400 undangan</span><span>Parkir luas</span><span>Konsultasi gratis lewat WhatsApp</span>
+    <span>Mulai Rp 5 jutaan</span><span>Kapasitas 400 undangan</span><span>Parkir luas</span><span>Konsultasi gratis lewat WhatsApp</span>
+    <span>Mulai Rp 5 jutaan</span><span>Kapasitas 400 undangan</span><span>Parkir luas</span><span>Konsultasi gratis lewat WhatsApp</span>
+  </div>
+</div>
 
-    <section id="properties" class="properties">
-        <div class="container">
-            <h2 class="section-title">Fasilitas Gedung Kami</h2>
-            <div class="properties-grid">
-                <div class="property-card">
-                    <div class="property-image">
-                        <img src="https://lpaud-unpam.my.id/uploads/1783750425_6a51df19eacb4.jpeg" alt="Aula Rektorat">
-                    </div>
-                    <h3>Aula Rektorat</h3>
-                    <p class="property-price">Mulai Rp 5,2 Juta</p>
-                    <p class="property-desc">Kapasitas 350 tamu, gedung nyaman, dan area parkir luas.</p>
-                    <button class="property-btn">Lihat Detail</button>
-                </div>
-                <div class="property-card">
-                    <div class="property-image">
-                        <img src="https://lpaud-unpam.my.id/uploads/1783750413_6a51df0d3346a.jpeg" alt="Gedung Serbaguna Pusat Kota">
-                    </div>
-                    <h3>Aula Rektorat</h3>
-                    <p class="property-price">Mulai Rp 5,2 Juta</p>
-                    <p class="property-desc">Cocok untuk seminar, pelatihan, dan acara keluarga dengan fasilitas modern.</p>
-                    <button class="property-btn">Lihat Detail</button>
-                </div>
-                <div class="property-card">
-                    <div class="property-image">
-                        <img src="https://lpaud-unpam.my.id/uploads/1783750440_6a51df28068a8.jpeg" alt="Ruang Meeting Premium">
-                    </div>
-                    <h3>Aula Rektorat</h3>
-                    <p class="property-price">Mulai Rp 5,2 Juta</p>
-                    <p class="property-desc">Ruang rapat nyaman, layar proyektor, dan sistem suara lengkap.</p>
-                    <button class="property-btn">Lihat Detail</button>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="about" class="story">
+  <div class="container story-grid">
+    <img src="https://manpro.lpaud-unpam.my.id/uploads/1783749265_6a51da914f700.jpeg" alt="Interior Aula Rektorat" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+    <div>
+      <h2>Venue Yang Siap Kita Dekorasi Sesuai Wedding Dream Anda</h2>
+      <p>Ruangan luas, nyaman, dan mudah dijangkau. Tim kami mendampingi dari survei lokasi sampai acara selesai, supaya Anda dan keluarga bisa menikmati harinya.</p>
+      <a href="#contact" class="btn">Jadwalkan survei lokasi</a>
+      <div class="facts">
+        <div><b>1000+</b><span>Acara terlaksana</span></div>
+        <div><b>400</b><span>Kapasitas undangan</span></div>
+        <div><b>10+</b><span>Tahun pengalaman</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Tentang Aula Rektorat</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Mengapa Memilih Aula Rektorat?</h3>
-                    <ul class="features-list">
-                        <li>✓ Pengalaman lebih dari 10 tahun di bidang penyewaan gedung</li>
-                        <li>✓ Banyak pilihan venue untuk berbagai acara</li>
-                        <li>✓ Tim profesional dan responsif</li>
-                        <li>✓ Harga transparan dan fleksibel</li>
-                        <li>✓ Dukungan penuh sebelum dan selama acara</li>
-                    </ul>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-            
-            
-            
-                        <h4>1000+</h4>
-                        <p>Acara Sukses</p>
-                    </div>
-                    <div class="stat">
-                        <h4>10+</h4>
-                        <p>Gedung Tersedia</p>
-                    </div>
-                    <div class="stat">
-                        <h4>20+</h4>
-                        <p>Tahun Pengalaman</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="fasilitas">
+  <div class="container">
+    <div class="section-head">
+      <h2>Semua yang Anda butuhkan di hari-H</h2>
+      <p>Dari ruang utama sampai ruang rias, sudah tersedia di satu gedung.</p>
+    </div>
+    <div class="fasilitas-grid">
+      <div class="fas "><h3>Ruang utama 400 undangan</h3><p>Ruangan luas untuk resepsi dengan kapasitas hingga 400 undangan.</p></div>
+      <div class="fas "><h3>Full AC</h3><p>Seluruh ruangan sejuk dan nyaman untuk tamu.</p></div>
+      <div class="fas "><h3>Sound system</h3><p>Pengeras suara tersedia untuk akad, sambutan, dan hiburan.</p></div>
+      <div class="fas"><h3>Ruang rias pria</h3><p>Ruang khusus untuk mempelai pria dan rombongan bersiap.</p></div>
+      <div class="fas"><h3>Ruang rias wanita</h3><p>Ruang khusus untuk mempelai wanita dan tim rias.</p></div>
+      <div class="fas"><h3>Ruang keluarga/VIP</h3><p>Tempat beristirahat bagi keluarga inti dan tamu kehormatan.</p></div>
+      <div class="fas"><h3>Pantry</h3><p>Area untuk menyiapkan dan menata hidangan.</p></div>
+      <div class="fas"><h3>Toilet</h3><p>Toilet tersedia untuk tamu dan keluarga.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Hubungi Kami</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <h4>📞 Telepon</h4>
-                        <p>+62 881-855-3622</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>✉️ Email</h4>
-                        <p>BagasVenue@gmail.com</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>📍 Gedung Aula Rektorat</h4>
-                        <p>Jl. Suryakencana No.1, Pamulang Bar., Kec. Pamulang, Kota Tangerang Selatan, Banten 15417</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>🕐 Jam Kerja</h4>
-                        <p>Senin - Jumat: 09:00 - 17:00<br>Sabtu: 10:00 - 14:00</p>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Nama Anda" required>
-                    <input type="email" placeholder="Email Anda" required>
-                    <textarea placeholder="Pesan Anda" rows="5" required></textarea>
-                    <button type="submit" class="submit-btn">Kirim Pesan</button>
-                </form>
-            </div>
+<section id="paket">
+  <div class="container">
+    <div class="section-head">
+      <h2>Pilih ruang untuk acara Anda</h2>
+      <p>Harga transparan, bisa disesuaikan dengan kebutuhan acara.</p>
+    </div>
+    <div class="packages-grid">
+      <article class="pkg">
+        <img src="https://manpro.lpaud-unpam.my.id/uploads/1783750440_6a51df28068a8.jpeg" alt="Aula Rektorat" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+        <div class="pkg-body">
+          <h3>Resepsi Pernikahan</h3>
+          <p class="price">Fasilitas</p>
+          <ul><li>Kapasitas 400 undangan</li><li>Area parkir luas</li><li>Gedung nyaman dan bersih</li></ul>
+          <a class="btn" href="https://wa.me/628818553622?text=Halo%20Pak%20Bagas%2C%20saya%20ingin%20menanyakan%20paket%20Resepsi%20Pernikahan." target="_blank" rel="noopener noreferrer">Tanya paket ini</a>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 BAGAS Penyewaan Gedung. Semua hak dilindungi.</p>
-            <div class="social-links">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">WhatsApp</a>
-            </div>
+      </article>
+      <article class="pkg featured">
+        <img src="https://manpro.lpaud-unpam.my.id/uploads/1794644427_6af819cbd1f60.jpeg" alt="Dekorasi pernikahan" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+        <div class="pkg-body">
+          <h3>Perpisahan Sekolah &amp; Seminar</h3>
+          <p class="price">Fasilitas</p>
+          <ul><li>Gladi dan Acara hari H di satu lokasi</li><li>Kapasitas 300 kursi</li><li>Pendampingan tim sebelum dan saat acara</li></ul>
+          <a class="btn" href="https://wa.me/628818553622?text=Halo%20Pak%20Bagas%2C%20saya%20ingin%20menanyakan%20paket%20Akad%20dan%20Resepsi." target="_blank" rel="noopener noreferrer">Tanya paket ini</a>
         </div>
-    </footer>
+      </article>
+      <article class="pkg">
+        <img src="https://manpro.lpaud-unpam.my.id/uploads/1783750413_6a51df0d3346a.jpeg" alt="Gedung serbaguna" referrerpolicy="no-referrer" loading="lazy" decoding="async">
+        <div class="pkg-body">
+          <h3>Wedding All Pax</h3>
+          <p class="price">Fasilitas</p>
+          <ul><li>Cocok untuk lamaran, syukuran, arisan</li><li>Harga terjangkau</li><li>terima beres tidak perlu repot lagi</li></ul>
+          <a class="btn" href="https://wa.me/628818553622?text=Halo%20Pak%20Bagas%2C%20saya%20ingin%20menanyakan%20paket%20Lamaran%20dan%20Acara%20Keluarga." target="_blank" rel="noopener noreferrer">Tanya paket ini</a>
+        </div>
+      </article>
+    </div>
+    <p class="note">Harga final tergantung tanggal dan kebutuhan acara. Hubungi kami untuk penawaran lengkap.</p>
+  </div>
+</section>
 
-    <a href="https://wa.me/628818553622?text=Halo%20Pak%Bagas%2C%20saya%20ingin%20menanyakan%20penyewaan%20gedung." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Hubungi WhatsApp BAGAS">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M16.6 14.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.4.1-.1.2-.5.7-.6.8-.1.1-.2.1-.4 0-.2-.1-.8-.3-1.5-.9-.5-.5-.9-1.1-.9-1.3 0-.1 0-.2.1-.3.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1.1-.2.1-.3 0-.1-.1-.3-.2-.4-.1-.1-.4-.9-.6-1.2-.2-.3-.3-.3-.4-.3h-.3c-.1 0-.2 0-.3.1-.1.1-.4.4-.4.9s.4 1.1.5 1.2c.1.1 1.2 1.9 2.9 2.7.4.2.7.3 1 .4.4.1.8.1 1.1.1.3 0 .7-.1.9-.2.2-.1.5-.4.6-.8.1-.3.1-.6 0-.7-.1-.1-.3-.2-.4-.3zM12 2C6.5 2 2 6.5 2 12c0 2.2.6 4.3 1.7 6.1L2 22l3.9-1.1c1.7.9 3.6 1.4 5.6 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.8 0-3.5-.5-5-.1l-.4-.2-2.3.6.6-2.3-.2-.4A8 8 0 1 1 20 12c0 4.4-3.6 8-8 8z"/>
-        </svg>
-    </a>
+<section class="why">
+  <div class="container">
+    <div class="section-head">
+      <h2>Kenapa pasangan memilih kami</h2>
+    </div>
+    <div class="why-grid">
+      
+      <div><h3>Harga Terjangkau</h3><p>Fasilitas lengkap dengan harga yang terjangkau.</p></div>
+      <div><h3>Tim responsif</h3><p>Pertanyaan dijawab cepat lewat WhatsApp, termasuk akhir pekan.</p></div>
+      <div><h3>Lokasi mudah</h3><p>Di Pamulang, Tangerang Selatan, dengan parkir luas untuk tamu.</p></div>
+      <div><h3>Pendampingan penuh</h3><p>Dari survei sampai hari-H, tim kami ada di lokasi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head"><h2>Rencanakan harinya bersama kami</h2><p>Kirim pesan atau datang langsung untuk melihat gedungnya.</p></div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-item"><h3>Telepon</h3><p>+62 881-855-3622</p></div>
+        <div class="info-item"><h3>Email</h3><p>BagasVenue@gmail.com</p></div>
+        <div class="info-item"><h3>Alamat</h3><p>Gedung Aula Rektorat, Jl. Suryakencana No.1, Pamulang Bar., Kec. Pamulang, Kota Tangerang Selatan, Banten 15417</p></div>
+        <div class="info-item"><h3>Jam kerja</h3><p>Senin–Jumat: 09:00–17:00<br>Sabtu: 10:00–14:00</p></div>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <input type="text" id="nama" placeholder="Nama Anda" required>
+        <input type="email" placeholder="Email Anda" required>
+        <textarea id="pesan" placeholder="Ceritakan rencana acara Anda" rows="5" required></textarea>
+        <button type="submit" class="btn">Kirim lewat WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 BAGAS Penyewaan Gedung. Semua hak dilindungi.</p>
+    <div class="social-links">
+      <a href="#" class="social-link">Facebook</a>
+      <a href="#" class="social-link">Instagram</a>
+      <a href="https://wa.me/628818553622" class="social-link" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/628818553622?text=Halo%20Pak%20Bagas%2C%20saya%20ingin%20menanyakan%20penyewaan%20gedung." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Hubungi WhatsApp BAGAS">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const toggle=document.getElementById('navToggle'),menu=document.getElementById('navMenu');
+toggle.addEventListener('click',()=>{const o=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',o);toggle.setAttribute('aria-label',o?'Tutup menu':'Buka menu')});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded',false)}));
+const WA='628818553622';
+const open=t=>window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(t),'_blank','noopener');
+const tgl=document.getElementById('tgl');
+tgl.min=new Date().toISOString().split('T')[0];
+document.getElementById('checker').addEventListener('submit',e=>{
+  e.preventDefault();
+  const d=new Date(tgl.value).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  open('Halo Pak Bagas, saya ingin cek ketersediaan Aula Rektorat untuk pernikahan pada '+d+' ('+document.getElementById('tamu').value+').');
+});
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  open('Halo Pak Bagas, saya '+document.getElementById('nama').value+'. '+document.getElementById('pesan').value);
+});
+</script>
 </body>
-</html>>
+</html>
